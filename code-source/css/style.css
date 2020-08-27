@@ -1,0 +1,344 @@
+body{
+	width: 100%;
+	background-color: #f3e9f1;
+	color: #4d4d4d;
+	font-family: sans-serif;
+	margin: auto;
+	font-size: 1.5em;
+	text-align: center;
+}
+a{
+	display: block;
+	text-decoration: none;
+	color: inherit;
+}
+ul,  li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li img{
+	height: 150px;
+}
+.tabs{
+	margin-top: 5px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+.left{
+	position: absolute;
+	right: 10000px;
+}
+.tabs li{
+	display: block;
+}
+.tabs:after{
+	display: table;
+	content: ' ';
+	clear: both;
+}
+.tabs a{
+	display: inline-block;
+	background-color: #fff3fd;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+.tabs a:hover{
+	color: #e58a0a;
+}
+.tabs .active a{
+	background-color: #ffe4be;
+}
+.tabs-content{
+	position: relative;
+	z-index: 3;
+	padding: 20px;
+	background-color: #f3e9f1;
+	margin: 10px 0 20px 0;
+}
+.tab-content{
+	display: none;
+}
+.tab-content.active{
+	display: block;
+
+}	
+.fade{
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+.fade.in{
+	opacity: 1;
+}
+
+
+.article-contains{
+	display: flex;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 70px;
+}
+.article{
+	margin: auto;
+	width: 80%;
+	padding: 15px 15px 5px;
+	margin-bottom: 20px;
+	display: block;
+	cursor: pointer;
+	border-radius: 10px;
+	background-color: #fff3fd;
+	box-shadow: 0 1px 50px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.article:hover{
+	background-color: #ffe4be;
+}
+.logo{
+	height: 150px;
+	float: none;
+}
+a img{
+	float:  right;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+.price{
+	display: flex;
+	justify-content: center;
+	font-size: 1.3em;
+	color: #965fec;
+}
+.price p{
+	margin: 10px;
+}
+.fiche, .order{
+	align-items: center;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	width: 100%;
+	border-radius: 15px;
+	background-color: #fff3fd;
+	box-shadow: 0 1px 100px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	padding-top: 10px;
+}
+.order{
+	margin-top: 50px;
+}
+.fiche select{
+	width: 30%;
+	min-width: 100px;
+	font-size: 0.9em;
+	background-color: #f3e9f1;
+	height: 40px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}.fiche label {
+	margin: 20px;
+}
+.fiche p {
+	margin: 30px 10px 30px 10px;
+}
+.fiche img{
+	width: 40%;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.hidden{
+	display: none;
+}
+.contain-button{
+	display: flex;
+	justify-content: center;
+}
+div button, form a{
+	height: 50px;
+	width: 200px;
+	background-color: #fff3fd;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border-radius: 10px;
+	margin: 20px;
+	color: inherit;
+	font-size: 0.8em;
+}
+div button:hover, form a:hover{
+	color:  #e58a0a;
+}
+form a{
+	height: 35px;
+	margin: 10px auto auto auto;
+	font-size: 1em;
+	display: inline-block;
+	padding-top: 5px;
+}
+
+
+.containButtonFiche, .containButtonPanier{
+	display: flex;
+	justify-content: center;
+}
+
+
+
+
+
+.panier{
+	display: flex;
+	width: 100%;
+	height: 200px;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 15px;
+	background-color: #fff3fd;
+	box-shadow: 0 1px 100px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	margin-bottom: 15px;
+
+}
+.panier img{
+	width: 200px;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+form{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	margin: 50px auto auto auto;
+	padding: 20px;
+	border-radius: 15px;
+	background-color: #fff3fd;
+	box-shadow: 0 1px 100px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+form label{
+	text-align: left;
+	margin: 10px;
+}
+form input{
+	background-color: #f4eef3;
+	height: 35px;
+	border-radius: 10px;
+	color: #4d4d4d;
+	font-size: 1em;
+}
+.submit{
+	width: 50%;
+	margin: auto;
+}
+.submit:hover{
+	background-color: #ffe4be;
+	color: #e58a0a;
+}
+
+/* Responsive acceuil 1000px */
+
+@media all and (max-width: 1000px)
+{
+	.panier{
+		flex-direction: column;
+		height: auto;
+		padding-top: 15px;
+	}
+}
+/* Responsive acceuil 850px */
+
+@media all and (max-width: 850px)
+{
+	body{
+		font-size: 1.3em;
+	}
+	a img{
+		width: 30%;
+		height: auto;
+	}
+	form a{
+		height: 30px;
+	}
+}
+
+/* Responsive acceuil 700px */
+
+@media all and (max-width: 700px)
+{
+	body{
+		font-size: 1em;
+	}
+	.price{
+		font-size: 1.1em;
+	}
+	.article{
+		display: flex;
+		flex-direction: column;
+	}
+	a img{
+		width: 40%;
+		margin: auto;
+	}
+	.logo{
+		height: 130px;
+	}
+	
+	.containButtonFiche a{
+		margin-top: 20px;
+		width: 50%;
+	}
+	.containButtonFiche a button{
+		margin: 0;
+		width: 80%;
+	}
+	.containButtonPanier{
+		margin-top: 20px;
+		width: 100%;
+	}
+	.containButtonPanier a{
+		width: 33%
+	}
+	.containButtonPanier a button{
+		margin: 0;
+		width: 90%;
+	}
+	form{
+		width: 70%;
+	}
+	form a{
+		height: 25px;
+	}
+}
+
+/* Responsive acceuil 410px */
+
+@media all and (max-width: 410px)
+{
+	.logo{
+		height: 100px;
+	}
+	h2{
+		font-size: 1em;
+		margin-bottom: 0;
+	}
+	.containButtonFiche a button{
+		font-size:0.7em;
+	}
+	.containButtonPanier{
+		flex-direction: column;
+		align-items: center;
+	}
+	.containButtonPanier a{
+		width: 60%;
+	}
+	.containButtonPanier a button{
+		height: 30px;
+	}
+	form{
+		width: 80%;
+	}
+	.tabs{
+		font-size: 0.8em;
+	}
+	.tabs a{
+		padding: 5px 10px;
+	}
+}
