@@ -1,7 +1,7 @@
 // FONCTION ONGLETS
 
 (function(){
-	let afficherOnglet = function (a, animations){
+	let displayTabs = function (a, animations){
 		if(animations === undefined){
 			animations = true
 		}
@@ -42,7 +42,7 @@
 	let tabs = document.querySelectorAll('.tabs a')
 	for(let i =0; i < tabs.length; i++){
 		tabs[i].addEventListener('click', function(e){
-			afficherOnglet(this)
+			displayTabs(this)
 		})
 	}
 
@@ -50,7 +50,7 @@
 		let hash = window.location.hash
 		let a = document.querySelector('a[href="' + hash + '"]')
 		if (a !== null && !a.parentNode.classList.contains('active')){
-			afficherOnglet(a, e !== undefined)
+			displayTabs(a, e !== undefined)
 		}
 	}
 	window.addEventListener('hashchange', hashChange)
@@ -111,6 +111,7 @@ containButtonPanier.classList.replace('contain-button-panier','hidden')
 let shopContinue = document.querySelector('.shop-continue')
 let resetPanierB = document.querySelector('.reset-panier')
 let validButtonPanier = document.querySelector('.valid-button-panier')
+let errorAlert = document.createElement('p')
 
 let products = []
 
@@ -137,7 +138,7 @@ function get(url){
 }
 
 // Fonction GET (appareil Photo) création JS de la page d'acceuil 
-// TEST FONCTIONNEL: responses == JSON (lenses, _id, name, price,
+// TEST : responses == JSON (lenses, _id, name, price,
 // description, imageUrl)
 get("http://localhost:3000/api/cameras").then(function(response){
 	 responses = JSON.parse(response)
@@ -146,7 +147,7 @@ get("http://localhost:3000/api/cameras").then(function(response){
 })
 
 // Pour toutes les réponses de la requète création d'un article
-// TEST FONCTIONNEL: for reponses[i] création d'un article contenant 
+// TEST : for reponses[i] création d'un article contenant 
 // ( name, price, imageUrl + lenses description et _id en "hidden")
 function createHomePage(){
 	for (let i = 0 ; i < responses.length; i++) {
@@ -176,7 +177,7 @@ function createHomePage(){
 		priceNumber = document.createElement('p')
 		priceNumber.classList.add('priceNumber')
 		priceMonnaie = document.createElement('p')
-		priceNumber.textContent = responses[i].price
+		priceNumber.textContent = (responses[i].price/100).toFixed(2)
 		priceTitle.innerHTML = prix
 		priceMonnaie.innerHTML = euros
 		lien.appendChild(price)
@@ -208,7 +209,7 @@ function createHomePage(){
 
 
 // Pour tout les articles, au click, création d'une nouvelle page description de l'article 
-// TEST FONCTIONNEL: for articles[i] au click création d'une nouvelle page
+// TEST : for articles[i] au click création d'une nouvelle page
 // (avec lenses et description sans "hidden") 
 function createFichePage(){
 	liens = document.querySelectorAll('.article')
@@ -248,7 +249,7 @@ function createFichePage(){
 
 
 // Function globale de mise a zero de la page description ( ex: retour accueil)
-// TEST FONCTIONNEL: click de (accueil ou retour accueil) == fiche = undefined
+// TEST : click de (accueil ou retour accueil) == fiche = undefined
 function resetFicheContain(){
 	if(fiche !== undefined){
 		fiche.innerHTML = ''
@@ -264,8 +265,8 @@ function resetFicheContain(){
 
 
 // Function 'Ajouter au panier' créer un apercu dans le panier 
-// TEST FONCTIONNEL: click d'(ajouter au panier) == new apercu panier 
-// TEST FONCTIONNEL: Total commande == somme des articles selectionnés
+// TEST : click d'(ajouter au panier) == new apercu panier 
+// TEST : Total commande == somme des articles selectionnés
 function validationFiche(){
 	panierNone.classList.add('hidden')
 
@@ -286,7 +287,7 @@ function validationFiche(){
 	for (let i = 0; i < addTotal.length; i++) {
 		sommeTotal += Number(addTotal[i].innerHTML)
 	}
-	total.innerHTML = 'Total de la commande : ' + sommeTotal + ' Euros'
+	total.innerHTML = 'Total de la commande : ' + sommeTotal.toFixed(2) + ' Euros'
 
 	panierContain.insertBefore(total, containButtonPanier)
 	containButtonPanier.classList.replace('hidden', 'containButtonPanier')
@@ -294,7 +295,7 @@ function validationFiche(){
 
 
 // Supprime les éléments du panier 
-// TEST FONCTIONNEL: click de (vider panier ou envoyer form) == panier = undefined
+// TEST : click de (vider panier ou envoyer form) == panier = undefined
 function resetPanier(){
 	let paniers = document.querySelectorAll('.panier')
 	for (let i = 0; i < paniers.length; i++) {
@@ -310,6 +311,7 @@ function resetPanier(){
 
 
 // Renvois vers la page d'accueil tout en concervant le panier 
+// TEST 
 function shopContinueButton(){
 	if (form.classList.length === 2){
 		form.classList.remove('in')
@@ -319,7 +321,7 @@ function shopContinueButton(){
 
 
 // Fais apparaitre le formulaire de Commande 
-// TEST FONTIONNEL: click de (valider commande) == Apparition du Formulaire
+// TEST : click de (valider commande) == Apparition du Formulaire
 function validationPanier(){
 	event.preventDefault()
 	form.classList.replace('hidden', 'fade')
@@ -333,10 +335,10 @@ function validationPanier(){
 // Requète POST d'envoi du formulaire et des ID du panier 
 // retourne un Numéro de Commande 
 // Créer une page de confirmation de commande
-// TEST FONTIONNEL: contact == formulaire valid 
-// TEST FONTIONNEL: products == tableau des ID selectionnés 
-// TEST FONTIONNEL: Envoie du Form == contact + products
-// TEST FONTIONNEL: si requete OK == Récap commande = orderId ( renvoyé par le serveur)
+// TEST : contact == formulaire valid 
+// TEST : products == tableau des ID selectionnés 
+// TEST : Envoie du Form == contact + products
+// TEST : si requete OK == Récap commande = orderId ( renvoyé par le serveur)
 function sendData(){
 
 	let req = new XMLHttpRequest()
@@ -362,7 +364,7 @@ function sendData(){
 		p.innerHTML = 'ORINOCO vous remercie pour votre commande !'
 		order.appendChild(p) 
 		let totalOrder = document.createElement('p')
-		totalOrder.innerHTML = 'Total de la commande : ' + sommeTotal + ' Euros'
+		totalOrder.innerHTML = 'Total de la commande : ' + sommeTotal +',00 Euros'
 		order.appendChild(totalOrder)
 		let orderId = document.createElement('p')
 		orderId.innerHTML = 'Numéro de commande : ' + responseOrder.orderId
@@ -394,15 +396,18 @@ let aForm = document.getElementById('aForm')
 // TEST FONTIONNEL: verifier si Address n'accepte que des chiffres et des lettres
 // TEST FONTIONNEL: verifier si formatage Email et valide 
 aForm.addEventListener('click', function (event) {
-	let regexString = /^[a-zA-Z]+$/
+	let regexString = /^[a-zA-Z -]+$/
 	let validFirstName = regexString.test(form.firstName.value)
 	let validLastName = regexString.test(form.lastName.value)
 	let validCity = regexString.test(form.city.value)
 	
-	let regexAddress = /^[0-9]+[A-Za-z0-9 ]+$/
-	let validAddress = regexAddress.test(form.address.value)
+	
+	let regexAlphaNumber = /^[A-Za-z0-9 ]+$/
+	let validAddress = regexAlphaNumber.test(form.address.value)
 	let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/
 	let validEmail = regexEmail.test(form.email.value)
+
+	errorAlert.innerHTML = ''
 
 	if(validFirstName == true && validLastName == true && validCity == true && validAddress == true && validEmail == true){
 		sendData()
@@ -410,6 +415,35 @@ aForm.addEventListener('click', function (event) {
 		resetPanier()
 	}else{
 		event.preventDefault()
-		window.alert('Saisies érronées !')
+		form.appendChild(errorAlert)
+		if (validFirstName == false) {
+			let errorFirstName = document.createElement('span')
+			errorFirstName.innerHTML = "Prénom incorrect </br>"
+			errorAlert.appendChild(errorFirstName)
+		}
+		if (validLastName == false) {
+			let errorLastName = document.createElement('span')
+			errorLastName.innerHTML = "Nom incorrect </br>"
+			errorAlert.appendChild(errorLastName)
+		}
+		if (validCity == false) {
+			let errorCity = document.createElement('span')
+			errorCity.innerHTML = "Ville incorrecte </br>"
+			errorAlert.appendChild(errorCity)
+		}
+		if (validAddress == false) {
+			let errorAddress = document.createElement('span')
+			errorAddress.innerHTML = "Adresse incorrect </br>"
+			errorAlert.appendChild(errorAddress)
+		}
+		if (validEmail == false) {
+			let errorEmail = document.createElement('span')
+			errorEmail.innerHTML = "Email non valide </br>"
+			errorAlert.appendChild(errorEmail)
+		}
+		window.scrollBy({
+		  top: 1000,
+		  behavior: 'smooth'
+		})
 	}
 })

@@ -1,14 +1,16 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="fr">
 
   <head>
   	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
     <meta name="description" content="ORINOCO, est une entreprise de commer e en ligne spécialisé dans la vente d'appareil photo de collection">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>ORINOCO-Old Camera</title>
   </head>
 
   <body>
-    <img class="logo"src="../images/logo-orinoco.png" alt="">
+    <img class="logo" src="../images/logo-orinoco.png" alt="">
     <div>
         <ul class="tabs"> 
           <li class="active" id="accueil"><a href="#home">Accueil</a></li>
@@ -26,45 +28,46 @@
           <div class="tab-content fiche-produit" id="product">
             <p class="fiche-none">Aucun Article Selectionné</p>
             <section class="contain-button-fiche">
-              <a href="#home">
-                <button class="home-return">Retour accueil</button>
+              <a href="#home" class="home-return">
+                Retour accueil
               </a> 
-              <a href="#panier">
-              <button class="valid-button-fiche">Ajouter au panier</button>
+              <a href="#panier" class="valid-button-fiche">
+                Ajouter au panier
               </a>  
-            </div>
-          </section>
+            </section>
+          </div>
+          
 
           <div class="tab-content" id="panier">
             <p class="panier-none">Votre panier est Vide</p>
             <section class="contain-button-panier">
               <a href="#home" class="shop-continue">
-                <button>Continuer mes achats</button>
+                Continuer mes achats
               </a> 
-              <a href="#panier">
-                <button class="reset-panier">Vider mon panier</button>
+              <a href="#panier"class="reset-panier">
+                Vider mon panier
               </a>
-              <a href="#">
-                <button class="valid-button-panier">Valider mon panier</button>
+              <a href="#" class="valid-button-panier">
+                Valider mon panier
               </a>
             </section>
             <section>
-              <form name="myform" action="" id="my-form">
+              <form name="myform" id="my-form">
 
                 <label for="firstName">Prénom :</label>
-                <input type="text" name="firstName" class="firstName" required>
+                <input  id="firstName" type="text" name="firstName" required>
 
                 <label for="lastName">Nom :</label>
-                <input type="text" name="lastName" class="lastName" required>
+                <input id="lastName" type="text" name="lastName" required>
 
                 <label for="address">Adresse :</label>
-                <input type="text" name="address" class="address" required>
+                <input id="address" type="text" name="address" required>
 
                 <label for="city">Ville :</label>
-                <input type="text" name="city" class="city" required>
+                <input id="city" type="text" name="city" required>
 
                 <label for="email">Email :</label>
-                <input type="email" name="email" class="email" required>
+                <input id="email" type="email" name="email" required placeholder="exemple@exemple.fr">
                 
                 <a type="submit" href="#order-contain" id="aForm">
                   Envoyer !
@@ -82,6 +85,6 @@
     </div>
     
     
-    <script type="text/javascript" src="../js/index.js"></script>
+    <script src="../js/index.js"></script>
   </body>
 </html>
