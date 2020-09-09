@@ -76,7 +76,7 @@ let config = document.createElement('select')
 let image
 let title
 let prix = 'Prix :'
-let euros = 'Euros'
+let euros = '€'
 let price
 let priceTitle
 let priceNumber
@@ -287,7 +287,7 @@ function validationFiche(){
 	for (let i = 0; i < addTotal.length; i++) {
 		sommeTotal += Number(addTotal[i].innerHTML)
 	}
-	total.innerHTML = 'Total de la commande : ' + sommeTotal.toFixed(2) + ' Euros'
+	total.innerHTML = 'Total de la commande : ' + sommeTotal.toFixed(2) + ' €'
 
 	panierContain.insertBefore(total, containButtonPanier)
 	containButtonPanier.classList.replace('hidden', 'containButtonPanier')
@@ -364,7 +364,7 @@ function sendData(){
 		p.innerHTML = 'ORINOCO vous remercie pour votre commande !'
 		order.appendChild(p) 
 		let totalOrder = document.createElement('p')
-		totalOrder.innerHTML = 'Total de la commande : ' + sommeTotal +',00 Euros'
+		totalOrder.innerHTML = 'Total de la commande : ' + sommeTotal.toFixed(2) + ' €'
 		order.appendChild(totalOrder)
 		let orderId = document.createElement('p')
 		orderId.innerHTML = 'Numéro de commande : ' + responseOrder.orderId
