@@ -165,6 +165,7 @@ function createHomePage(){
 
 		image = new Image(225, 150) 
 		image.src = responses[i].imageUrl
+		image.setAttribute("alt","Un appareil Photo")
 		lien.appendChild(image)
 
 		title = document.createElement('h2')
@@ -335,7 +336,7 @@ function validationPanier(){
 // Requète POST d'envoi du formulaire et des ID du panier 
 // retourne un Numéro de Commande 
 // Créer une page de confirmation de commande
-// TEST : contact == formulaire valid 
+// TEST : contact == formulaire valide 
 // TEST : products == tableau des ID selectionnés 
 // TEST : Envoie du Form == contact + products
 // TEST : si requete OK == Récap commande = orderId ( renvoyé par le serveur)
@@ -390,11 +391,11 @@ validButtonPanier.addEventListener('click', validationPanier)
 	
 
 
-let aForm = document.getElementById('aForm')
-// Bouton Valider le Formulaire (envoi des données)
+// Bouton "Valider le Formulaire" (envoi des données)
 // TEST FONTIONNEL: verifier si LastName FirstName et city n'accepte que des lettres
 // TEST FONTIONNEL: verifier si Address n'accepte que des chiffres et des lettres
 // TEST FONTIONNEL: verifier si formatage Email et valide 
+let aForm = document.getElementById('aForm')
 aForm.addEventListener('click', function (event) {
 	let regexString = /^[a-zA-Z -]+$/
 	let validFirstName = regexString.test(form.firstName.value)
