@@ -8,4 +8,4 @@ et node server
 
 ensuite ouvrir index.html à partir du dossier frontend
 ou 
-ce rendre sur : https://romainfuente.github.io/projet5/code-source/html/index.html
+ce rendre sur : https://romainfuente.github.io/projet5/frontend/index.html
