@@ -114,6 +114,7 @@ let validButtonPanier = document.querySelector('.valid-button-panier')
 let errorAlert = document.createElement('p')
 
 let products = []
+let oldPanier = []
 
 // FONCTIONS ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -264,6 +265,30 @@ function resetFicheContain(){
 	}
 }
 
+function myStorage(){
+	if (localStorage.length !== 0){
+		panierNone.classList.add('hidden')
+		oldPanier.push(JSON.parse(localStorage.getItem('MonPanier')))
+		for (var i = 0; i < oldPanier[0].length; i++) {
+			createOldPanier = oldPanier[0][i]
+			let panier = document.createElement('div')
+			panier.classList.add('panier')
+			panier.innerHTML = oldPanier[0][i]
+			panierContain.insertBefore(panier, containButtonPanier)
+		}
+		
+
+		addTotal = document.querySelectorAll('.panier .priceNumber')
+		sommeTotal = 0
+		for (let i = 0; i < addTotal.length; i++) {
+			sommeTotal += Number(addTotal[i].innerHTML)
+		}
+		total.innerHTML = 'Total de la commande : ' + sommeTotal.toFixed(2) + ' €'
+		panierContain.insertBefore(total, containButtonPanier)
+		containButtonPanier.classList.replace('hidden', 'containButtonPanier')
+	}
+}
+myStorage()
 
 // Function 'Ajouter au panier' créer un apercu dans le panier 
 // TEST : click d'(ajouter au panier) == new apercu panier 
@@ -280,8 +305,12 @@ function validationFiche(){
 	panierContain.insertBefore(panier, containButtonPanier)
 
 	products.push(panier.firstChild.innerHTML)
+	oldPanier.push(panier.innerHTML)
+
+	localStorage.setItem('MonPanier', JSON.stringify(oldPanier))
+	//localStorage.setItem('entrie', panier.outerHTML)
 	
-	localStorage.setItem('MonPanier', products)
+	
 	
 	addTotal = document.querySelectorAll('.panier .priceNumber')
 	sommeTotal = 0
@@ -298,6 +327,8 @@ function validationFiche(){
 // Supprime les éléments du panier 
 // TEST : click de (vider panier ou envoyer form) == panier = undefined
 function resetPanier(){
+	localStorage.clear()
+	oldPanier =[]
 	let paniers = document.querySelectorAll('.panier')
 	for (let i = 0; i < paniers.length; i++) {
 		panierContain.removeChild(paniers[i])
@@ -341,7 +372,8 @@ function validationPanier(){
 // TEST : Envoie du Form == contact + products
 // TEST : si requete OK == Récap commande = orderId ( renvoyé par le serveur)
 function sendData(){
-
+	localStorage.clear()
+	oldPanier =[]
 	let req = new XMLHttpRequest()
 	let contact = new Object()
 	contact.firstName = form.firstName.value
@@ -356,7 +388,6 @@ function sendData(){
 
 	req.onreadystatechange = function(){
 		if (this.readyState == XMLHttpRequest.DONE && this.status == 201){
-
 		let responseOrder = JSON.parse(req.responseText)
 		let order = document.createElement('div')
 		order.classList.add('order')
@@ -405,6 +436,7 @@ aForm.addEventListener('click', function (event) {
 	
 	let regexAlphaNumber = /^[A-Za-z0-9 ]+$/
 	let validAddress = regexAlphaNumber.test(form.address.value)
+	
 	let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/
 	let validEmail = regexEmail.test(form.email.value)
 
